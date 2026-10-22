@@ -29,7 +29,9 @@
     * { box-sizing: border-box; }
 
     html {
-      overscroll-behavior-y: none;
+      overflow-x: hidden;
+      overflow-x: clip;
+      overscroll-behavior: none;
     }
 
     body {
@@ -41,7 +43,8 @@
         radial-gradient(circle at 82% 10%, rgba(255, 95, 117, .14), transparent 30%),
         linear-gradient(145deg, #111322 0%, #080b14 44%, #05070d 100%);
       overflow-x: hidden;
-      overscroll-behavior-y: none;
+      overflow-x: clip;
+      overscroll-behavior: none;
     }
 
     button, input, textarea, select { font: inherit; }
@@ -363,7 +366,10 @@
       position: fixed;
       inset: 0;
       z-index: 30;
+      overflow-x: hidden;
       overflow-y: auto;
+      overscroll-behavior: contain;
+      touch-action: pan-y;
       background: #080b14;
       transform: translateY(100%);
       transition: transform .36s ease;
@@ -1305,7 +1311,7 @@
     const isLocalPreview = ["127.0.0.1", "localhost"].includes(location.hostname);
     if ("serviceWorker" in navigator && location.protocol !== "file:" && !isLocalPreview) {
       window.addEventListener("load", () => {
-        navigator.serviceWorker.register("service-worker.js?v=16").catch(() => {});
+        navigator.serviceWorker.register("service-worker.js?v=17").catch(() => {});
       });
     }
   </script>
