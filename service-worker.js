@@ -1,4 +1,4 @@
-const CACHE_NAME = "movie-mood-v15";
+const CACHE_NAME = "movie-mood-v16";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -6,9 +6,9 @@ const APP_SHELL = [
   "./firebase-config.js",
   "./firebase-db.js",
   "./manifest.json",
-  "./icons/icon-180.png",
-  "./icons/icon-192.png",
-  "./icons/icon-512.png"
+  "./icons/icon-180.png?v=2",
+  "./icons/icon-192.png?v=2",
+  "./icons/icon-512.png?v=2"
 ];
 
 self.addEventListener("install", (event) => {
@@ -19,7 +19,7 @@ self.addEventListener("install", (event) => {
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) => {
-      return Promise.all(keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key)));
+      return Promise.all(keys.filter((key) => key.startsWith("movie-mood-") && key !== CACHE_NAME).map((key) => caches.delete(key)));
     })
   );
   self.clients.claim();
